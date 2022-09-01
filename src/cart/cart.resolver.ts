@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Cart } from './cart.entities';
 import { CartService } from './cart.service';
 
@@ -13,5 +13,10 @@ export class CartResolver {
     @Args('name') name: string,
   ): Promise<void> {
     return await this.cartService.addToCart(productId, quantity, name);
+  }
+
+  @Query(() => [Cart])
+  async getItemsInCart(@Args('name') name: string): Promise<Cart[]> {
+    return await this.cartService.getItemsInCart(name);
   }
 }

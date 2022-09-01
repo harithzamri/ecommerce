@@ -3,12 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProductsService } from '../products/products.service';
 import { Repository } from 'typeorm';
 import { Cart } from './cart.entities';
+import { User } from '../user/user.entities';
 
 @Injectable()
 export class CartService {
   constructor(
     @InjectRepository(Cart)
     private cartRepository: Repository<Cart>,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
     private productsService: ProductsService,
   ) {}
 
@@ -21,6 +24,11 @@ export class CartService {
       relations: ['item', 'user'],
     });
     const product = await this.productsService.findOne(productId);
+    const userid = await this.userRepository.findOne({
+      where: {
+        name: user,
+      },
+    });
 
     //Confirm the product exists.
     if (product) {
@@ -34,6 +42,7 @@ export class CartService {
           quantity,
         });
         newItem.item = product;
+        newItem.user = userid;
 
         return await this.cartRepository.save(newItem);
       } else {
@@ -48,5 +57,12 @@ export class CartService {
       }
     }
     return null;
+  }
+
+  async getItemsInCart(name: string): Promise<Cart[]> {
+    const userCart = await this.cartRepository.find({
+      relations: ['item', 'user'],
+    });
+    return await userCart.filter((item) => item.user.name === name);
   }
 }

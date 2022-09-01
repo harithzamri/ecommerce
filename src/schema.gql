@@ -29,6 +29,7 @@ type Query {
   count: Float!
   products(paginate: PaginateInput!): [Product!]!
   getAProduct(id: Int!): Product!
+  getItemsInCart(name: String!): [Cart!]!
 }
 
 input PaginateInput {
