@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  name: String!
+  password: String!
+  cart: Cart
+}
+
+type Cart {
+  id: Int!
+  total: Float!
+  quantity: Float!
+}
+
+type Product {
+  id: Int!
+  name: String!
+  price: Float!
+  quantity: Float!
+  cart: [Cart!]
+}
+
+type Query {
+  getAUser(id: Int!): User!
+  getAllUser: [User!]!
+  count: Float!
+  products(paginate: PaginateInput!): [Product!]!
+  getAProduct(id: Int!): Product!
+}
+
+input PaginateInput {
+  skip: Float = 0
+  take: Float = 10
+  search: String = ""
+  sort: String = "asc"
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  addToCart(productId: Float!, quantity: Float!, name: String!): Cart!
+}
+
+input CreateUserInput {
+  name: String!
+  password: String!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  quantity: Float!
+}
