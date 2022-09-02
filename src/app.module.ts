@@ -15,6 +15,7 @@ import { Cart } from './cart/cart.entities';
 import { OrderService } from './order/order.service';
 import { OrderResolver } from './order/order.resolver';
 import { OrderModule } from './order/order.module';
+import { Order } from './order/order.entities';
 
 @Module({
   imports: [
@@ -30,7 +31,7 @@ import { OrderModule } from './order/order.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      entities: [Product, User, Cart],
+      entities: [Product, User, Cart, Order],
       autoLoadEntities: true,
       synchronize: true, // shouldn't be used in production - may lose data
     }),

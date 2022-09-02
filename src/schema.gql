@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Order {
+  id: Order!
+  subTotal: Float!
+  pending: Boolean!
+}
+
 type User {
   id: Int!
   name: String!

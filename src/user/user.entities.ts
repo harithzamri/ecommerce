@@ -8,6 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Order } from '../order/order.entities';
 
 @ObjectType()
 @Entity()
@@ -35,4 +36,8 @@ export class User {
   @OneToMany((type) => Cart, (cart) => cart.id)
   @JoinColumn()
   cart: Cart[];
+
+  @OneToOne(() => Order, (order) => order.id)
+  @JoinColumn()
+  order: Order;
 }
