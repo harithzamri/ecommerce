@@ -7,6 +7,7 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  JoinColumn,
 } from 'typeorm';
 
 @ObjectType()
@@ -30,5 +31,6 @@ export class Order {
   items: Product[];
 
   @OneToOne((type) => User, (user) => user.name)
+  @JoinColumn()
   user: User;
 }

@@ -36,6 +36,7 @@ type Query {
   products(paginate: PaginateInput!): [Product!]!
   getAProduct(id: Int!): Product!
   getItemsInCart(name: String!): [Cart!]!
+  getOrder(username: String!): Order!
 }
 
 input PaginateInput {
@@ -49,6 +50,7 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   createProduct(createProductInput: CreateProductInput!): Product!
   addToCart(productId: Float!, quantity: Float!, name: String!): Cart!
+  createOrder(username: String!): Order!
 }
 
 input CreateUserInput {
