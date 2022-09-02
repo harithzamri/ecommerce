@@ -41,6 +41,6 @@ import { Order } from './order/order.entities';
     OrderModule,
   ],
   controllers: [AppController],
-  providers: [AppService, OrderService, OrderResolver],
+  providers: [AppService],
 })
 export class AppModule {}
