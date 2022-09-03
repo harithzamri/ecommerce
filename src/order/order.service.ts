@@ -53,7 +53,7 @@ export class OrderService {
       return { message: 'order modified' };
     }
   }
-
+  //find orders based on the name
   async getOrders(name: string): Promise<Order[]> {
     const orders = await this.orderRepository.find({ relations: ['user'] });
     return orders.filter((order) => order.user.name === name);

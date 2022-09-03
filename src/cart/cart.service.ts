@@ -58,7 +58,7 @@ export class CartService {
     }
     return null;
   }
-
+  //get all items in cart based on the name
   async getItemsInCart(name: string): Promise<Cart[]> {
     const userCart = await this.cartRepository.find({
       relations: ['item', 'user'],
