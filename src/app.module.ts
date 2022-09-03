@@ -12,10 +12,11 @@ import { UserModule } from './user/user.module';
 import { User } from './user/user.entities';
 import { CartModule } from './cart/cart.module';
 import { Cart } from './cart/cart.entities';
-import { OrderService } from './order/order.service';
-import { OrderResolver } from './order/order.resolver';
 import { OrderModule } from './order/order.module';
 import { Order } from './order/order.entities';
+import { PaymentModule } from './payment/payment.module';
+import { StripeModule } from './stripe/stripe.module';
+import { Payment } from './payment/payment.entities';
 
 @Module({
   imports: [
@@ -31,14 +32,17 @@ import { Order } from './order/order.entities';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      entities: [Product, User, Cart, Order],
+      entities: [Product, User, Cart, Order, Payment],
       autoLoadEntities: true,
       synchronize: true, // shouldn't be used in production - may lose data
     }),
+    StripeModule.forRoot(process.env.STRIPE_KEY, { apiVersion: '2022-08-01' }),
     UserModule,
     ProductsModule,
     CartModule,
     OrderModule,
+    PaymentModule,
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

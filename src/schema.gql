@@ -11,6 +11,7 @@ type Order {
 type User {
   id: Int!
   name: String!
+  email: String!
   password: String!
   cart: Cart
 }
@@ -27,6 +28,12 @@ type Product {
   price: Float!
   quantity: Float!
   cart: [Cart!]
+}
+
+type Payment {
+  id: Int!
+  user_id: Float
+  payment_id: String!
 }
 
 type Query {
@@ -51,6 +58,7 @@ type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
   addToCart(productId: Float!, quantity: Float!, name: String!): Cart!
   createOrder(username: String!): Order!
+  checkout(orderId: Float!, userId: Float!): Payment!
 }
 
 input CreateUserInput {

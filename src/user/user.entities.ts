@@ -28,6 +28,12 @@ export class User {
 
   @Field()
   @Column({
+    name: 'email',
+  })
+  email: string;
+
+  @Field()
+  @Column({
     name: 'password',
   })
   password: string;
