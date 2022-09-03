@@ -40,4 +40,4 @@ $ npm run test:cov
 
 ## ERD DIAGRAM
 
-<body>You can refer the ERD Diagram [here](https://app.dbdesigner.net/designer/schema/552501) </body>
+- You can refer the ERD Diagram [here](https://app.dbdesigner.net/designer/schema/552501)
