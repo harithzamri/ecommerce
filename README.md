@@ -41,3 +41,12 @@ $ npm run test:cov
 ## ERD DIAGRAM
 
 - You can refer the ERD Diagram [here](https://app.dbdesigner.net/designer/schema/552501)
+
+```bash
+POSTGRES_HOST=
+POSTGRES_PORT=5432
+POSTGRES_PASSWORD=
+POSTGRES_DATABASE=
+POSTGRES_USER=
+STRIPE_KEY=
+```
