@@ -19,4 +19,9 @@ export class CartResolver {
   async getItemsInCart(@Args('name') name: string): Promise<Cart[]> {
     return await this.cartService.getItemsInCart(name);
   }
+
+  @Mutation(() => Boolean)
+  async deleteCart(@Args('id') id: number) {
+    return this.cartService.deleteCart(id);
+  }
 }

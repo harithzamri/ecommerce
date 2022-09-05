@@ -27,7 +27,7 @@ export class Cart {
   @Column()
   quantity: number;
 
-  //   @Field((type) => Product, { nullable: true })
+  @Field((type) => Product, { nullable: true })
   @ManyToOne((type) => Product, (order) => order.id)
   @JoinColumn()
   item: Product;
