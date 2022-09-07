@@ -17,8 +17,8 @@ export class OrderResolver {
     return this.orderService.order(user);
   }
 
-  @Query((type) => Order)
-  async getOrder(@Args('username') user: string) {
+  @Query((type) => [Order])
+  async getOrder(@Args('username') user: string): Promise<Order[]> {
     return this.orderService.getOrders(user);
   }
 }

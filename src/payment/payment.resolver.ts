@@ -13,4 +13,9 @@ export class PaymentResolver {
   ) {
     return this.paymentService.createCheckoutSession(orderId, userId);
   }
+
+  @Query(() => Payment)
+  async getClientSecret(@Args('userId') userId: number) {
+    return this.paymentService.getSession(userId);
+  }
 }

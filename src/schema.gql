@@ -3,9 +3,11 @@
 # ------------------------------------------------------
 
 type Order {
-  id: Order!
-  subTotal: Float!
+  id: Int!
+  subTotal: Float
   pending: Boolean!
+  items: Product
+  user: User
 }
 
 type User {
@@ -35,6 +37,7 @@ type Payment {
   id: Int!
   user_id: Float
   payment_id: String!
+  client_secret: String!
 }
 
 type Query {
@@ -44,7 +47,8 @@ type Query {
   products(paginate: PaginateInput!): [Product!]!
   getAProduct(id: Int!): Product!
   getItemsInCart(name: String!): [Cart!]!
-  getOrder(username: String!): Order!
+  getOrder(username: String!): [Order!]!
+  getClientSecret(userId: Float!): Payment!
 }
 
 input PaginateInput {

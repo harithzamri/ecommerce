@@ -21,4 +21,8 @@ export class Payment {
   @Field()
   @Column({ name: 'paymentID' })
   payment_id: string;
+
+  @Field()
+  @Column({ name: 'client_secret' })
+  client_secret: string;
 }

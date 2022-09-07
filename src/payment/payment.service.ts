@@ -34,29 +34,27 @@ export class PaymentService {
     });
     const cart = cartItems.filter((item) => item.user.name === user.name);
     const getItems = cart.map((item) => item.item.name);
-    //create stripe session to checkout
-    const session = await this.stripe.checkout.sessions.create({
+
+    const paymentIntent = await this.stripe.paymentIntents.create({
+      amount: order.subTotal,
+      currency: 'myr',
       payment_method_types: ['card'],
-      mode: 'payment',
-      line_items: [
-        {
-          price_data: {
-            currency: 'myr',
-            unit_amount: order.subTotal,
-            product_data: {
-              name: 'items',
-            },
-          },
-          quantity: 1,
-        },
-      ],
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/cancel',
     });
 
     return this.paymentRepository.save({
       user_id: userId,
-      payment_id: session.id,
+      payment_id: paymentIntent.id,
+      client_secret: paymentIntent.client_secret,
     });
+  }
+
+  async getSession(userId: number): Promise<Payment> {
+    let session = await this.paymentRepository.findOne({
+      where: {
+        user_id: userId,
+      },
+    });
+
+    return session;
   }
 }
