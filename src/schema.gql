@@ -43,6 +43,7 @@ type Payment {
 type Query {
   getAllUser: [User!]!
   products(paginate: PaginateInput!): [Product!]!
+  getAProduct(id: Float!): Product!
   getItemsInCart(name: String!): [Cart!]!
   getOrder(username: String!): [Order!]!
   getClientSecret(userId: Float!): Payment!
