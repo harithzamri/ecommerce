@@ -6,9 +6,10 @@ import { User } from '../user/user.entities';
 import { Cart } from './cart.entities';
 import { CartService } from './cart.service';
 import { CartResolver } from './cart.resolver';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Cart, Product, User])],
+  imports: [TypeOrmModule.forFeature([Cart, Product, User]), CqrsModule],
   providers: [CartService, ProductsService, CartResolver],
 })
 export class CartModule {}

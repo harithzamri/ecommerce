@@ -42,9 +42,7 @@ type Payment {
 
 type Query {
   getAllUser: [User!]!
-  count: Float!
   products(paginate: PaginateInput!): [Product!]!
-  getAProduct(id: Int!): Product!
   getItemsInCart(name: String!): [Cart!]!
   getOrder(username: String!): [Order!]!
   getClientSecret(userId: Float!): Payment!
@@ -59,7 +57,6 @@ input PaginateInput {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  createProduct(createProductInput: CreateProductInput!): Product!
   addToCart(productId: Float!, quantity: Float!, name: String!): Cart!
   deleteCart(id: Float!): Boolean!
   createOrder(username: String!): Order!
@@ -69,10 +66,4 @@ type Mutation {
 input CreateUserInput {
   name: String!
   password: String!
-}
-
-input CreateProductInput {
-  name: String!
-  price: Float!
-  quantity: Float!
 }
