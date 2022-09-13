@@ -56,7 +56,7 @@ export class OrderService {
   //find orders based on the name
   async getOrders(name: string): Promise<Order[]> {
     const orders = await this.orderRepository.find({ relations: ['user'] });
-    console.log(orders.filter((order) => order.user.name === name));
+    // console.log(orders.filter((order) => order.user.name === name));
     return orders.filter((order) => order.user.name === name);
   }
 }

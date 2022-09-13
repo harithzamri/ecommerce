@@ -26,9 +26,10 @@ export class User {
   })
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({
     name: 'email',
+    nullable: true,
   })
   email: string;
 

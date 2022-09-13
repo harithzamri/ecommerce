@@ -53,6 +53,9 @@ export class PaymentService {
       where: {
         user_id: userId,
       },
+      order: {
+        id: 'DESC',
+      },
     });
 
     return session;

@@ -13,7 +13,7 @@ type Order {
 type User {
   id: Int!
   name: String!
-  email: String!
+  email: String
   password: String!
   cart: Cart
 }
@@ -41,7 +41,6 @@ type Payment {
 }
 
 type Query {
-  getAUser(id: Int!): User!
   getAllUser: [User!]!
   count: Float!
   products(paginate: PaginateInput!): [Product!]!
