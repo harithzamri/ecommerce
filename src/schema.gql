@@ -58,8 +58,6 @@ input PaginateInput {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  addToCart(productId: Float!, quantity: Float!, name: String!): Cart!
-  deleteCart(id: Float!): Boolean!
   createOrder(username: String!): Order!
   checkout(orderId: Float!, userId: Float!): Payment!
 }

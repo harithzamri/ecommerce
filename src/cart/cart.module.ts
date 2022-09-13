@@ -7,9 +7,10 @@ import { Cart } from './cart.entities';
 import { CartService } from './cart.service';
 import { CartResolver } from './cart.resolver';
 import { CqrsModule } from '@nestjs/cqrs';
+import { ShowCartHandler } from './queries/handler/show-cart-handler';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Cart, Product, User]), CqrsModule],
-  providers: [CartService, ProductsService, CartResolver],
+  providers: [CartService, ProductsService, CartResolver, ShowCartHandler],
 })
 export class CartModule {}
