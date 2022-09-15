@@ -67,14 +67,6 @@ export class CartService {
   }
 
   async deleteCart(id: number): Promise<Boolean> {
-    const cart = await this.cartRepository.find({
-      where: {
-        id,
-      },
-    });
-
-    if (!cart) throw new NotFoundException('cart not found');
-
     await this.cartRepository.delete({
       id,
     });

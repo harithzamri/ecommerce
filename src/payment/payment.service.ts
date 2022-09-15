@@ -36,7 +36,7 @@ export class PaymentService {
     const getItems = cart.map((item) => item.item.name);
 
     const paymentIntent = await this.stripe.paymentIntents.create({
-      amount: order.subTotal,
+      amount: order.subTotal * 100,
       currency: 'myr',
       payment_method_types: ['card'],
     });
