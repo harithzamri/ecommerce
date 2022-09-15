@@ -22,7 +22,7 @@ describe('OrderService', () => {
         {
           provide: ORDER_REPOSITORY_TOKEN,
           useValue: {
-            find: jest.fn(),
+            find: jest.fn((x) => x),
             create: jest.fn(),
             save: jest.fn(),
             update: jest.fn(),
@@ -58,5 +58,18 @@ describe('OrderService', () => {
 
   it('orderRepository should be fined', () => {
     expect(orderRepository).toBeDefined();
+  });
+
+  describe('getOrders', () => {
+    it('get orders based on name', async () => {
+      const result = [
+        {
+          id: 1,
+          subTotal: 5100,
+          pending: false,
+        },
+      ];
+      const orders = await orderRepository.find({ relations: ['user'] });
+    });
   });
 });

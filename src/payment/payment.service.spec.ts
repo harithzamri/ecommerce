@@ -59,4 +59,12 @@ describe('PaymentService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  // describe('getSession', () => {
+  //   it('get session based on userId', () => {
+  //     const id = 1;
+  //     let session = service.getSession(id);
+  //     expect(session);
+  //   });
+  // });
 });
