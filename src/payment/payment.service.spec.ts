@@ -8,6 +8,7 @@ import { Payment } from './payment.entities';
 import { UserService } from '../user/user.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from '../user/user.entities';
+import { STRIPE_CLIENT } from '../stripe/constants';
 
 describe('PaymentService', () => {
   let service: PaymentService;
@@ -18,7 +19,7 @@ describe('PaymentService', () => {
   let stripe: Stripe;
 
   const CART_REPOSITORY_TOKEN = getRepositoryToken(Cart);
-  const ORDER_REPOSITORY_TOKEN = getRepositoryToken(User);
+  const ORDER_REPOSITORY_TOKEN = getRepositoryToken(Order);
   const PAYMENT_REPOSITORY_TOKEN = getRepositoryToken(Payment);
 
   beforeEach(async () => {
@@ -45,15 +46,26 @@ describe('PaymentService', () => {
           },
         },
         {
-          provide: Stripe,
+          provide: STRIPE_CLIENT,
           useValue: {
             paymentIntents: jest.fn(),
+          },
+        },
+        {
+          provide: UserService,
+          useValue: {
+            findOne: jest.fn(),
           },
         },
       ],
     }).compile();
 
     service = module.get<PaymentService>(PaymentService);
+    cartRepository = module.get<Repository<Cart>>(CART_REPOSITORY_TOKEN);
+    orderRepository = module.get<Repository<Order>>(ORDER_REPOSITORY_TOKEN);
+    paymentRepository = module.get<Repository<Payment>>(
+      PAYMENT_REPOSITORY_TOKEN,
+    );
   });
 
   it('should be defined', () => {
